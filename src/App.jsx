@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function App(){
   const projects = [
@@ -21,6 +21,22 @@ export default function App(){
       tech: "IT Infrastructure · Support Systems"
     }
   ]
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target
+          if (entry.isIntersecting) el.classList.add('active')
+          else el.classList.remove('active')
+        })
+      },
+      { threshold: 0.6 }
+    )
+
+    document.querySelectorAll('section.panel').forEach((s) => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div>

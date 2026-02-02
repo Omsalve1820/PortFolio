@@ -19,11 +19,21 @@ nav a.cta{background:linear-gradient(90deg,var(--accent),#7b61ff);padding:8px 12
 .actions .btn.outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
 .panel{padding:28px 0;border-top:1px solid rgba(255,255,255,0.02)}
 
-main{height:calc(100vh - 64px);margin-top:64px;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
-section.panel{min-height:calc(100vh - 64px);display:flex;align-items:center;scroll-snap-align:start;padding-top:48px;padding-bottom:48px}
+main{height:calc(100vh - 64px);margin-top:64px;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth;perspective:1000px}
+section.panel{min-height:calc(100vh - 64px);display:flex;align-items:center;scroll-snap-align:start;padding-top:48px;padding-bottom:48px;transform-style:preserve-3d;transition:transform 420ms cubic-bezier(.2,.9,.2,1),box-shadow 420ms;will-change:transform}
 .panel .container{padding-top:0;padding-bottom:0}
 .panel:nth-of-type(odd){background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))}
 .panel:nth-of-type(even){background:linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.02))}
+
+/* 3D slide / z-axis slop effect when panel is active */
+section.panel{transform:translate3d(0,0,0) rotateX(0deg) rotateY(0deg)}
+section.panel.active:nth-of-type(odd){transform:translate3d(-12px,12px,28px) rotateY(-2deg);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
+section.panel.active:nth-of-type(even){transform:translate3d(12px,12px,28px) rotateY(2deg);box-shadow:0 30px 60px rgba(2,6,23,0.6)}
+
+/* Slightly reduce transform for smaller screens */
+@media (max-width:900px){
+  section.panel.active:nth-of-type(odd), section.panel.active:nth-of-type(even){transform:translate3d(0,8px,18px) rotateY(0deg)}
+}
 
 .skills{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:12px 0}
 .skills li{background:var(--glass);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
@@ -34,3 +44,11 @@ section.panel{min-height:calc(100vh - 64px);display:flex;align-items:center;scro
 .meta{color:var(--muted);font-size:0.9rem}
 .footer{padding:20px;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted);text-align:center}
 @media (max-width:640px){.hero h2{font-size:1.6rem}section.panel{padding-top:24px;padding-bottom:24px}}
+
+/* Education: horizontal layout */
+#education .grid{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:20px;padding-bottom:12px;padding-top:8px}
+#education .grid::-webkit-scrollbar{height:8px}
+#education .grid::-webkit-scrollbar-track{background:transparent}
+#education .grid::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:999px}
+#education .card{min-width:300px;flex:0 0 320px;scroll-snap-align:center}
+#education .grid{scroll-snap-type:x mandatory}
