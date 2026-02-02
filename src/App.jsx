@@ -38,20 +38,6 @@ export default function App(){
       </header>
 
       <main>
-        <section className="hero">
-          <div className="container" style={{textAlign: 'center'}}>
-            <div style={{marginBottom: '2.5rem'}}>
-              
-            </div>
-            <h2>Hi, I'm <span className="accent">Omkar</span>.</h2>
-            <p className="lead">Cybersecurity Analyst | Zscaler & Palo Alto Specialist | Zero Trust & Cloud Security Expert</p>
-            <p className="actions">
-              <a className="btn" href="#experience">View Experience</a>
-              <a className="btn outline" href="#contact">Get in touch</a>
-            </p>
-          </div>
-        </section>
-
         <section id="about" className="panel">
           <div className="container">
             <h3>About</h3>
@@ -64,6 +50,22 @@ export default function App(){
             <p style={{marginTop: '1rem', fontSize: '0.95rem', color: '#9aa6b2'}}>
               <strong>Location:</strong> Bengaluru, Karnataka, India
             </p>
+          </div>
+        </section>
+
+        <section id="experience" className="panel">
+          <div className="container">
+            <h3>Professional Experience</h3>
+            <div className="grid">
+              {projects.map((proj, idx) => (
+                <article key={idx} className="card">
+                  <h4>{proj.title}</h4>
+                  <p style={{fontSize: '0.9rem', color: '#00e5ff', marginBottom: '0.8rem'}}>{proj.period}</p>
+                  <p>{proj.description}</p>
+                  <p className="meta">Tech: {proj.tech}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -101,18 +103,21 @@ export default function App(){
           </div>
         </section>
 
-        <section id="experience" className="panel">
+        
+        <section id="education" className="panel">
           <div className="container">
-            <h3>Professional Experience</h3>
+            <h3>Education</h3>
             <div className="grid">
-              {projects.map((proj, idx) => (
-                <article key={idx} className="card">
-                  <h4>{proj.title}</h4>
-                  <p style={{fontSize: '0.9rem', color: '#00e5ff', marginBottom: '0.8rem'}}>{proj.period}</p>
-                  <p>{proj.description}</p>
-                  <p className="meta">Tech: {proj.tech}</p>
-                </article>
-              ))}
+              <article className="card">
+                <h4>Diploma in Computer Technology</h4>
+                <p style={{fontSize: '0.95rem', color: 'var(--muted)', marginBottom: '0.6rem'}}>Gov. Polytechnic, Ahilyanagar</p>
+                <p>85.50% aggregate</p>
+              </article>
+              <article className="card">
+                <h4>B.Tech in Information Systems (WILP)</h4>
+                <p style={{fontSize: '0.95rem', color: 'var(--muted)', marginBottom: '0.6rem'}}>BITS Pilani — Currently pursuing</p>
+                <p>Since December 2024</p>
+              </article>
             </div>
           </div>
         </section>
